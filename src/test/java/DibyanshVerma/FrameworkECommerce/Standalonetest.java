@@ -17,8 +17,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -27,7 +25,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Standalonetest {
 
-static WebDriver driver= null;
+	static WebDriver driver = null;
 
 //	static String productName = "ZARA COAT 3";
 
@@ -72,9 +70,6 @@ static WebDriver driver= null;
 
 		String orderConfirm = driver.findElement(By.cssSelector(".hero-primary")).getText();
 		Assert.assertTrue(orderConfirm.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
-		
-		Thread.sleep(2200);
-		driver.close();
 
 	}
 
@@ -89,22 +84,19 @@ static WebDriver driver= null;
 //		map1.put("email", "Ishu.verma@gmail.com");
 //		map1.put("password", "Test@1234");
 //		map1.put("productName", "ADIDAS ORIGINAL");
-		
-		DataReader data= new DataReader();
-		List<HashMap<String,String>> data1= data.getJsonDataToMap();
+
+		DataReader data = new DataReader();
+		List<HashMap<String, String>> data1 = data.getJsonDataToMap();
 
 		return new Object[][] { { data1.get(0) }, { data1.get(1) } };
 	}
-	
-	public  String getScreenshot(String testCaseName, WebDriver driver) throws IOException
-	{
-		TakesScreenshot ts=(TakesScreenshot)driver;
-		File Source= ts.getScreenshotAs(OutputType.FILE);
-		File DestinationFile= new File(System.getProperty("user.dir")+"//reports"+testCaseName+".png");
-		FileUtils.copyFile(Source, DestinationFile);
-		return System.getProperty("user.dir")+"//reports"+testCaseName+".png";
-	}
-	
 
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File Source = ts.getScreenshotAs(OutputType.FILE);
+		File DestinationFile = new File(System.getProperty("user.dir") + "//reports" + testCaseName + ".png");
+		FileUtils.copyFile(Source, DestinationFile);
+		return System.getProperty("user.dir") + "//reports" + testCaseName + ".png";
+	}
 
 }
