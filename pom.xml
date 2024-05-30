@@ -50,7 +50,7 @@
     <repositories>
         <repository>
             <id>custom-repo</id>
-            <url>http://your-custom-repo-url</url>
+            <url>https://github.com/Dibyansh1998/CICD/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
