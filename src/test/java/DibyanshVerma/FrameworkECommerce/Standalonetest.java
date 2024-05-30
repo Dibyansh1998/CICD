@@ -17,6 +17,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -70,6 +72,9 @@ static WebDriver driver= null;
 
 		String orderConfirm = driver.findElement(By.cssSelector(".hero-primary")).getText();
 		Assert.assertTrue(orderConfirm.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
+		
+		Thread.sleep(2200);
+		driver.close();
 
 	}
 
@@ -99,5 +104,7 @@ static WebDriver driver= null;
 		FileUtils.copyFile(Source, DestinationFile);
 		return System.getProperty("user.dir")+"//reports"+testCaseName+".png";
 	}
+	
+
 
 }
