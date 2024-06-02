@@ -38,6 +38,7 @@ public class Standalonetest {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		LoginPage lp = new LoginPage(driver);
 		lp.goTo();
@@ -57,10 +58,8 @@ public class Standalonetest {
 		Thread.sleep(2000);
 		js.executeScript("window.scrollTo(0,400)");
 		driver.findElement(By.xpath("//button[contains(text(),'Checkout')]")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("input[placeholder*='Country']")).sendKeys("INDIA");
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder*='Country']"))).sendKeys("INDIA");
+		
 		wait.until(ExpectedConditions
 				.visibilityOfAllElements(driver.findElements(By.cssSelector("section[class*='ta-results']"))));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(
